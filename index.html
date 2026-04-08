@@ -1,6 +1,119 @@
 <!DOCTYPE html>
-<html>
-    <body>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#4a90d9">
+    <meta name="description" content="Тренажер спряжения неправильных французских глаголов">
+    <title>French Verbs Trainer</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==">
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <h1>🇫🇷 Verbes Irréguliers</h1>
+            <p class="subtitle">Тренажер неправильных глаголов</p>
+        </header>
 
-    </body>
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="practice">Практика</button>
+            <button class="tab-btn" data-tab="learn">Учить</button>
+            <button class="tab-btn" data-tab="stats">Прогресс</button>
+        </nav>
+
+        <main class="content">
+            <!-- Вкладка Практика -->
+            <section id="practice" class="tab-content active">
+                <div class="verb-card">
+                    <div class="verb-header">
+                        <span class="verb-infinitive" id="currentVerb">être</span>
+                        <span class="verb-translation" id="verbTranslation">быть</span>
+                    </div>
+                    
+                    <div class="tense-selector">
+                        <label for="tenseSelect">Время:</label>
+                        <select id="tenseSelect">
+                            <option value="present">Présent</option>
+                            <option value="imparfait">Imparfait</option>
+                            <option value="futur">Futur Simple</option>
+                            <option value="passe_compose">Passé Composé</option>
+                        </select>
+                    </div>
+
+                    <div class="conjugation-form" id="conjugationForm">
+                        <!-- Форма генерируется динамически -->
+                    </div>
+
+                    <div class="feedback" id="feedback"></div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-check" id="checkBtn">Проверить</button>
+                        <button class="btn btn-next" id="nextBtn" style="display: none;">Следующий</button>
+                    </div>
+                </div>
+
+                <div class="score-display">
+                    <span>⭐ Счет: <strong id="score">0</strong></span>
+                    <span>🔥 Серия: <strong id="streak">0</strong></span>
+                </div>
+            </section>
+
+            <!-- Вкладка Учить -->
+            <section id="learn" class="tab-content">
+                <div class="search-box">
+                    <input type="text" id="searchVerb" placeholder="Поиск глагола...">
+                </div>
+                
+                <div class="verb-list" id="verbList">
+                    <!-- Список глаголов генерируется динамически -->
+                </div>
+
+                <div class="verb-detail" id="verbDetail" style="display: none;">
+                    <button class="btn btn-back" id="backToList">← Назад</button>
+                    <h2 id="detailVerb">être</h2>
+                    <p id="detailTranslation">быть</p>
+                    <div id="detailConjugation"></div>
+                </div>
+            </section>
+
+            <!-- Вкладка Прогресс -->
+            <section id="stats" class="tab-content">
+                <div class="stats-card">
+                    <h3>Общая статистика</h3>
+                    <div class="stat-item">
+                        <span>Всего упражнений:</span>
+                        <strong id="totalExercises">0</strong>
+                    </div>
+                    <div class="stat-item">
+                        <span>Правильных ответов:</span>
+                        <strong id="correctAnswers">0</strong>
+                    </div>
+                    <div class="stat-item">
+                        <span>Точность:</span>
+                        <strong id="accuracy">0%</strong>
+                    </div>
+                    <div class="stat-item">
+                        <span>Изучено глаголов:</span>
+                        <strong id="learnedVerbs">0</strong>
+                    </div>
+                </div>
+
+                <div class="stats-card">
+                    <h3>Сложные глаголы</h3>
+                    <div id="difficultVerbs"></div>
+                </div>
+
+                <button class="btn btn-reset" id="resetStats">Сбросить прогресс</button>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>Французские неправильные глаголы</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
